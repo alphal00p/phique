@@ -1,0 +1,21 @@
+
+LIBRARY= libpolygamma.$(libext)
+LIBDIR= ../../lib/
+
+include make_opts
+
+CXXFLAGS=-O2
+
+OBJ= polygammafortran.o
+
+all: $(LIBDIR)$(LIBRARY)
+
+$(LIBDIR)$(LIBRARY): $(OBJ)
+	@$(call CREATELIB, $@, $^)
+	rm *.o
+
+clean_polygammafortran:
+	rm -vf $(LIBDIR)$(LIBRARY) *~
+
+clean:
+	rm -vf *.o $(LIBDIR)$(LIBRARY) *~

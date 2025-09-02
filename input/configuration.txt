@@ -1,0 +1,14 @@
+################################################################################
+#
+# This File contains some configuration variable for HELAC-Onia
+#
+# Line starting by #! are comment and should remain commented
+# Line starting with # should be uncommented if you want to modify the default
+# values
+#
+################################################################################
+#! Prefered Fortran Compiler
+#! If None: try to find gfortran or ifort or g77 or f77 or lahey95 on the system
+#!
+fortran_compiler = gfortran
+

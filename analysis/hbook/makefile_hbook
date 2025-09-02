@@ -1,0 +1,23 @@
+# ----------------------------------------------------------------------------
+#
+# Makefile for HBOOK library
+#
+# ----------------------------------------------------------------------------
+
+LIBRARY= libhbook.$(libext)
+LIBDIR=  ../../lib/
+
+include make_opts
+
+HBOOK = hfill.o hcurve.o hbook1.o hbook2.o dbook.o dbook-3d.o HwU.o histogram_interface.o
+
+all: $(LIBDIR)$(LIBRARY)
+
+$(LIBDIR)$(LIBRARY): $(HBOOK)
+	$(call CREATELIB, $@, $^)
+	$(RM) *.o *.mod
+
+clean_hbook:
+	rm -f $(LIBDIR)$(LIBRARY)
+clean:
+	$(RM) *.o *.mod $(LIBDIR)$(LIBRARY) *~

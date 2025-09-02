@@ -1,0 +1,55 @@
+# beam configuration
+colpar 1              # colliding particles: 1=hadron-hadron UPC, 2=electron/positron-proton, 3=e-e+, 4=gamma-gamma (exclusive, i.e., do not break up initial hadrons)
+energy_beam1 7000d0   # beam 1 energy per nucleon/electron/positron/gamma (GeV)
+energy_beam2 7000d0   # beam 2 energy per nucleon/electron/positron/gamma (GeV)
+nuclearA_beam1  0     # A of nuclear of beam 1, 0: it is proton
+nuclearA_beam2  0     # A of nuclear of beam 2, 0: it is proton
+nuclearZ_beam1  0     # Z of nuclear of beam 1, 0: it is proton
+nuclearZ_beam2  0     # Z of nuclear of beam 2, 0: it is proton
+UPC_photon_flux 1     # only colpar=1. 1: ChFF (2207.03012); 2: EDFF (2207.03012); 3: improved Weizsacker-Williams (only for proton beams)
+
+# order
+# 0: LO
+# 1: NLO QCD
+# 2: NNLO QCD
+order 2
+
+# Coloumb resummation
+# 0: no Coulomb resummation
+# 1: Leading-power Coulomb resummation
+# 2: Next-to-leading power Coulomb resummation
+coulomb 2
+
+# quark type (4: c; 5: b; 6: t)
+quark 4
+# quark mass (in unit of GeV)
+qmass 1.5d0   # quark mass (pole mass)
+
+# couplings
+alphaemm1     137.036d0    # alpha(0)**(-1)
+alphasMZ      0.118d0      # alpha_s(MZ) for the QCD corrections
+alphas_nloop  5            # how many loops run of alpha_s
+                           # in the MSbar scheme (maximal 5)
+Scale         0            # renormalisation scale.
+                           #  0: fixed scale;
+                           #  1: invariant mass of initial-state photons;
+FScaleValue   1.5d0         # the scale value in the fixed scale (Scale = 0)
+muR_over_ref  10          # the true renorm central scale is muR_over_ref*scale
+reweight_Scale T           # reweight to get (renorm) scale dependence
+rw_RScale_down 0.5d0       # lower bound for renormalisation scale variations
+rw_RScale_up   2.0d0       # upper bound for renormalisation scale variations
+
+# event generation setup
+nmc      1000000            # number of Monte Carlo points or integrating points
+
+# histogram output
+topdrawer_output F         # topdrawer output file (T) or not (F)
+gnuplot_output   F         # gnuplot output file (T) or not (F)
+root_output      F         # root output file (T) or not (F)
+hwu_output       T         # hwu output file (T) or not (F)
+
+# gamma-UPC (2207.03012) options
+use_MC_Glauber T          # whether or not to use MC-Glauber TAA for the survival probability when colpar=1 and UPC_photon_flux=1 or 2.
+# q2max in electron or proton iWW photon flux
+q2max 1d0   # the maximal q2 cut for iWW photon flux [in unit of GeV^2]
+

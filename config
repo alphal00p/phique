@@ -1,0 +1,198 @@
+#!/usr/bin/env bash
+# Guess values for system-dependent variables and create makefile
+
+# Option echo                                                                    
+if [ $(uname) == "Darwin" ];
+then
+    echooption="-e"
+elif [ $(uname) == "Linux" ];
+then
+    echooption="-e"
+else
+    echooption="-e"
+fi
+# create folders
+mkdir -p bin lib obj mod tmp output
+# determine the fortran compiler
+FC=""
+cat ./input/configuration.txt | while read tmpline
+do
+    ttmpline=${tmpline:0:16}
+    if [ "$ttmpline" == "fortran_compiler" ]
+    then
+        i=16
+        tmppath=""
+        while true;
+        do
+            ttmpline=${tmpline:$i:1}
+            if [ "$ttmpline" == "=" ]
+            then
+                i=`expr $i + 1`
+                FC=${tmpline:$i}
+                if [ ! -z `which $FC` ]
+                then
+		    echo $echooption $FC >> "$PWD/tmp/FC.tmp"
+                fi
+                break
+            elif [ $i -lt 200 ]
+            then
+                i=`expr $i + 1`
+            else
+                break
+            fi
+        done
+    fi
+done
+if [ -f "$PWD/tmp/FC.tmp" ]
+then
+    read -r FC<"$PWD/tmp/FC.tmp"
+    rm $PWD/tmp/FC.tmp
+fi
+if [ -z "$FC" ]
+then
+    if [ ! -z `which gfortran` ]
+    then
+	FC=gfortran
+    elif [ ! -z `which ifort` ]
+    then
+	FC=ifort
+    elif [ ! -z `which g77` ]
+    then
+	FC=g77
+    elif [ ! -z `which f77` ]
+    then
+	FC=f77
+    elif [ ! -z `which lahey95` ]
+    then
+	FC=lahey95
+    else
+	echo "please specify the valid fortran compiler"
+	while read FC
+	do
+	    if [ ! -z `which $FC` ]
+	    then
+		break
+	    else
+		echo "$FC is not a valid fortran compiler"
+		echo "exit(y/n) ?"
+		read x
+		if [ "$x" == "y" ]
+		then
+		    exit
+		else
+		    echo "input the valid fortran compiler again"
+		fi
+	    fi
+	done
+    fi
+fi
+echo "Using fortran compiler $FC"
+if [ -f "$PWD/input/fortran_compiler" ]
+then
+    rm $PWD/input/fortran_compiler
+fi
+echo $echooption "FC=$FC" >> "$PWD/input/fortran_compiler"
+
+if [ "$(ls -A $PWD/input/paths)" ];
+then
+    rm $PWD/input/paths/*
+fi
+# find root path from system
+# $ROOTSYS or $PATH 
+find_rootpath(){
+    if [ -f "$PWD/input/paths/rootpath" ]
+    then
+	read -r root_path<"$PWD/input/paths/rootpath"
+    else
+	root_path=""
+    fi
+    if [ ! -d $root_path ] || [ ! -f $root_path/include/TTree.h ]
+    then
+        if [ -f "$PWD/input/paths/rootpath" ]
+        then
+            rm $PWD/input/paths/rootpath
+        fi
+        root_path=$ROOTSYS
+        if [ ! -d $root_path ] || [ ! -f $root_path/include/TTree.h ]
+        then
+            arr=$(echo $PATH | tr ":" "\n")
+            for xx in $arr
+            do
+                if [ -d "$x" ] && [ -f "$x/include/TTree.h" ]
+                then
+                    echo $echooption $xx >> "$PWD/input/paths/rootpath"
+                    break
+                fi
+            done
+        else
+            echo $echooption $root_path >> "$PWD/input/paths/rootpath"
+        fi
+    fi
+}
+# find the correct root path via system $ROOTSYS and $PATH
+# find_rootpath
+# set the global directories
+exlibs=""
+include=""
+if [[ $exlibs != *"-lstdc++"* ]]
+then
+    exlibs="$exlibs -lstdc++"
+fi
+# write makefile
+write_makefile(){
+    local incfile="$1"
+    local outfile="$2"
+    if [ $outfile == "makefile" ]
+    then
+	local lhapdfobj=""
+    fi
+    line=""
+    cat $incfile | while read tmpline
+    do
+#    echo `expr substr "$tmpline" 2 4`                                          
+	if [ "$tmpline" == "FC=" ]
+	then
+            tmpline="$tmpline $FC"
+	elif [ "$tmpline" == "EXLIBS =" ]
+	then
+	    tmpline="$tmpline $exlibs"
+	elif [ "$tmpline" == "INCLUDE =" ]
+	then
+	    tmpline="$tmpline $include"
+	elif [ "$tmpline" == "end" ]
+	then
+#       -s file exists and is not empty
+#       -f file exists and is not a directory
+#       -d directory exists
+#       -x file is executable
+#       -w file is writable
+#       -r file is readable
+            if [ -f $outfile ]
+            then
+		rm -f $outfile
+            fi
+            echo $echooption "$line" >> $outfile # makefile
+            break
+	else
+            ttmpline=${tmpline:1:4}
+            if [ "$ttmpline" == "(FC)" ]
+            then
+		tmpline="\t$tmpline"
+            fi
+            ttmpline=${tmpline:0:2}
+            if [ "$ttmpline" == "rm" ] || [ "$ttmpline" == "ln" ] || [ "$ttmpline" == "(c" ]
+            then
+		tmpline="\t$tmpline"
+            fi
+	    ttmpline=${tmpline:0:1}
+	    if [ "$ttmpline" == "@" ]
+	    then
+		tmpline="\t$tmpline"
+	    fi
+	fi
+	line="$line\n$tmpline"
+    done
+}
+write_makefile ./input/template_files/makefile.inc makefile
+# compile
+make
