@@ -9,8 +9,8 @@ gammaupcdir=$(PWD)/vendor/gammaUPC/
 # FFLAGS=-ggdb -g -fbounds-check -ffpe-trap=invalid,zero,overflow,underflow,denormal -Wall
 objs=$(objdir)global_constants.o $(objdir)global.o $(objdir)qcd_constants.o $(objdir)qcd_setup.o $(objdir)qcd_coupling.o $(objdir)assertions.o $(objdir)runge_kutta.o $(objdir)newton_method.o $(objdir)coupling_global.o $(objdir)evaluate_couplings.o $(objdir)plot_NNLO.o $(objdir)MC_VEGAS.o $(objdir)photon_PDFs.o $(objdir)Constants.o $(objdir)Euler_gamma.o $(objdir)HarmonicSums.o $(objdir)potentialfunction.o $(objdir)phase_space_integrator.o $(objdir)driver.o
 mod = $(moddir)/*.mod
-exe = $(PWD)/bin/RunNNLO
-linkexe = $(PWD)/RunNNLO
+exe = $(PWD)/bin/RunPHIQUE
+linkexe = $(PWD)/RunPHIQUE
 EXLIBS =
 INCLUDE =
 FFLAGS+=$(INCLUDE) -I$(gammaupcdir) -fPIC -w -fno-automatic -ffixed-line-length-132
