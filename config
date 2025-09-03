@@ -13,6 +13,9 @@ else
 fi
 # create folders
 mkdir -p bin lib obj mod tmp output
+cd ./input
+mkdir -p paths
+cd ../
 # determine the fortran compiler
 FC=""
 cat ./input/configuration.txt | while read tmpline
