@@ -7,6 +7,12 @@ nuclearA_beam2  0     # A of nuclear of beam 2, 0: it is a proton
 nuclearZ_beam1  0     # Z of nuclear of beam 1, 0: it is a proton
 nuclearZ_beam2  0     # Z of nuclear of beam 2, 0: it is a proton
 
+# gamma-UPC (2207.03012) options
+UPC_photon_flux 1     # only colpar=1. 1: ChFF (2207.03012); 2: EDFF (2207.03012); 3: improved Weizsacker-Williams (only for proton beams)
+use_MC_Glauber F          # whether or not to use MC-Glauber TAA for the survival probability when colpar=1 and UPC_photon_flux=1 or 2.
+# q2max in electron or proton iWW photon fluxes
+q2max 1d0   # the maximal q2 cut for iWW photon flux [in unit of GeV**2]
+
 # order
 # 0: LO
 # 1: NLO QCD
@@ -33,7 +39,7 @@ Scale         0            # renormalisation scale.
                            #  0: fixed scale;
                            #  1: invariant mass of initial-state photons;
 FScaleValue   172.56d0         # the scale value in the fixed scale (Scale = 0)
-muR_over_ref  1          # the true renorm central scale is muR_over_ref*scale
+muR_over_ref  1          # the true renorm central scale is muR_over_ref*scale or muR_over_ref*FScaleValue (when Scale = 0)
 reweight_Scale T           # reweight to get (renorm) scale dependence
 rw_RScale_down 0.5d0       # lower bound for renormalisation scale variations
 rw_RScale_up   2.0d0       # upper bound for renormalisation scale variations
@@ -46,10 +52,3 @@ topdrawer_output F         # topdrawer output file (T) or not (F)
 gnuplot_output   F         # gnuplot output file (T) or not (F)
 root_output      F         # root output file (T) or not (F)
 hwu_output       T         # hwu output file (T) or not (F)
-
-# gamma-UPC (2207.03012) options
-UPC_photon_flux 1     # only colpar=1. 1: ChFF (2207.03012); 2: EDFF (2207.03012); 3: improved Weizsacker-Williams (only for proton beams)
-use_MC_Glauber T          # whether or not to use MC-Glauber TAA for the survival probability when colpar=1 and UPC_photon_flux=1 or 2.
-# q2max in electron or proton iWW photon fluxes
-q2max 1d0   # the maximal q2 cut for iWW photon flux [in unit of GeV^2]
-
