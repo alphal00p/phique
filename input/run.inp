@@ -2,11 +2,10 @@
 colpar 1              # colliding particles: 1=hadron-hadron UPC, 2=electron/positron-proton, 3=e-e+, 4=gamma-gamma (exclusive, i.e., do not break up initial hadrons)
 energy_beam1 7000d0   # beam 1 energy per nucleon/electron/positron/gamma (GeV)
 energy_beam2 7000d0   # beam 2 energy per nucleon/electron/positron/gamma (GeV)
-nuclearA_beam1  0     # A of nuclear of beam 1, 0: it is proton
-nuclearA_beam2  0     # A of nuclear of beam 2, 0: it is proton
-nuclearZ_beam1  0     # Z of nuclear of beam 1, 0: it is proton
-nuclearZ_beam2  0     # Z of nuclear of beam 2, 0: it is proton
-UPC_photon_flux 1     # only colpar=1. 1: ChFF (2207.03012); 2: EDFF (2207.03012); 3: improved Weizsacker-Williams (only for proton beams)
+nuclearA_beam1  0     # A of nuclear of beam 1, 0: it is a proton
+nuclearA_beam2  0     # A of nuclear of beam 2, 0: it is a proton
+nuclearZ_beam1  0     # Z of nuclear of beam 1, 0: it is a proton
+nuclearZ_beam2  0     # Z of nuclear of beam 2, 0: it is a proton
 
 # order
 # 0: LO
@@ -49,7 +48,8 @@ root_output      F         # root output file (T) or not (F)
 hwu_output       T         # hwu output file (T) or not (F)
 
 # gamma-UPC (2207.03012) options
+UPC_photon_flux 1     # only colpar=1. 1: ChFF (2207.03012); 2: EDFF (2207.03012); 3: improved Weizsacker-Williams (only for proton beams)
 use_MC_Glauber T          # whether or not to use MC-Glauber TAA for the survival probability when colpar=1 and UPC_photon_flux=1 or 2.
-# q2max in electron or proton iWW photon flux
+# q2max in electron or proton iWW photon fluxes
 q2max 1d0   # the maximal q2 cut for iWW photon flux [in unit of GeV^2]
 
