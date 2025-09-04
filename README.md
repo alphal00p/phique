@@ -23,7 +23,7 @@ article, as well as relevant references therein, if you use `PHIQUE`.
 
 Platform requirements
 
-* `Linux` or `macOS`.
+* `Linux` or `MacOS`.
 * `bash`
 
 Compiler requirements
