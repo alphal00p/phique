@@ -53,7 +53,7 @@ cd phique
 
 ## Example
 
-If you use the default `input/run.inp`, it will calculate the NNLO QCD and NLP Coulomb resummed cross section for top-quark pair production in ultraperipheral proton-proton collisions (with the ChFF photon flux from [gamma-UPC](https://arxiv.org/abs/2207.03012)) at 14 TeV. The total cross section is
+If you use the default `input/run.inp` and run the code, it will calculate the NNLO QCD and NLP Coulomb resummed cross section for top-quark pair production in ultraperipheral proton-proton collisions (with the ChFF photon flux from [gamma-UPC](https://arxiv.org/abs/2207.03012)) at 14 TeV. The total cross section is
 
 ```
 sigma (pb)                   sd (pb)
