@@ -13,7 +13,7 @@ exe = $(PWD)/bin/RunPHIQUE
 linkexe = $(PWD)/RunPHIQUE
 EXLIBS =
 INCLUDE =
-FFLAGS+=$(INCLUDE) -I$(gammaupcdir) -fPIC -w -fno-automatic -ffixed-line-length-132
+FFLAGS+=$(INCLUDE) -I$(gammaupcdir) -fPIC -w -fno-automatic -ffixed-line-length-132 -std=legacy
 
 all:    clean $(exe)
 	ln -s $(exe) $(linkexe)

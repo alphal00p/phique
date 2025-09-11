@@ -4,7 +4,7 @@ ifeq ($(origin FFLAGS),undefined)
   FFLAGS= -O -w -fbounds-check -fPIC
   #FFLAGS+= -g -fbounds-check -ffpe-trap=invalid,zero,overflow,underflow,denormal -Wall
 endif
-FFLAGS+= -ffixed-line-length-132
+FFLAGS+= -ffixed-line-length-132 -std=legacy
 
 # Set FC unless it's defined by an environment variable
 ifeq ($(origin FC),default)
