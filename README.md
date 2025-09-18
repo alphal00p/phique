@@ -13,7 +13,7 @@ Heavy-Quark Pair Production in Two-Photon Fusion at Next-to-Next-to-Leading Orde
 The code will calculate the total cross sections of heavy-quark pair production in two-photon collisions at high-energy colliders.
 
 In addition to this repository, further documentation is available in
-[arXiv:25XX.YYYYY](https://arxiv.org/abs/25XX.YYYYY). Please cite this
+[arXiv:2509.13439](https://arxiv.org/abs/2509.13439). Please cite this
 article, as well as relevant references therein, if you use `PHIQUE`.
 
 

@@ -19,7 +19,7 @@ q2max 1d0   # the maximal q2 cut for iWW photon flux [in unit of GeV**2]
 # 2: NNLO QCD
 order 2
 
-# Coloumb resummation
+# Coulomb resummation
 # 0: no Coulomb resummation
 # 1: Leading-power Coulomb resummation
 # 2: Next-to-leading power Coulomb resummation
