@@ -22,6 +22,6 @@
     WRITE(*,*)'|            Hua-Sheng Shao (LPTHE Paris)             |'
     WRITE(*,*)'|                                                     |'
     WRITE(*,*)'|    Please cite                                      |'
-    WRITE(*,*)'|            JHEP XX (2025) YYY    [arXiv:2509.13439] |'
+    WRITE(*,*)'|            JHEP 03 (2026) 068    [arXiv:2509.13439] |'
     WRITE(*,*)'|                                                     |'
     WRITE(*,*)'======================================================='
