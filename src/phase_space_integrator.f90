@@ -68,6 +68,21 @@ CONTAINS
           A2name=GetASymbol(nuclearA2,nuclearZ2)
           CALL GetNuclearInfo(A2name,Aval,Zval,NNLO_RA(2),NNLO_aA(2),NNLO_wA(2))
        ENDIF
+       IF(UPC_photon_flux.EQ.3.AND.(nuclearA1.LE.1.and.nuclearA2.LE.1))THEN
+          ! iWW for pp only
+          CALL ReadElem_real('q2max',q2max)
+          IF(q2max.LE.0d0)THEN
+             WRITE(*,*)"ERROR: q2max <= 0 #1 !"
+             STOP
+          ENDIF
+       ENDIF
+    ELSEIF(colpar.EQ.2.OR.colpar.EQ.3)THEN
+       ! iWW for ep or e+e-
+       CALL ReadElem_real('q2max',q2max)
+       IF(q2max.LE.0d0)THEN
+          WRITE(*,*)"ERROR: q2max <= 0 #2 !"
+          STOP
+       ENDIF
     ENDIF
 
     CALL ReadElem_real('energy_beam1',energy_beam1)
