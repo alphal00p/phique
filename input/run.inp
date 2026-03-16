@@ -1,5 +1,5 @@
 # beam configuration
-colpar 3              # colliding particles: 1=hadron-hadron UPC, 2=electron/positron-proton, 3=e-e+, 4=gamma-gamma (exclusive, i.e., do not break up initial hadrons)
+colpar 1              # colliding particles: 1=hadron-hadron UPC, 2=electron/positron-proton, 3=e-e+, 4=gamma-gamma (exclusive, i.e., do not break up initial hadrons)
 energy_beam1 7000d0   # beam 1 energy per nucleon/electron/positron/gamma (GeV)
 energy_beam2 7000d0   # beam 2 energy per nucleon/electron/positron/gamma (GeV)
 nuclearA_beam1  0     # A of nuclear of beam 1, 0: it is a proton
