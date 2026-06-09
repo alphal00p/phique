@@ -6,7 +6,7 @@ MODULE interpolation
   ! 2D
   PUBLIC::lagrange_interp_2d,pwl_interp_2d
   PUBLIC::lagrange_interp_2d_qp
-  ! ND
+  ! ND (there is also BSPLINE-Fortran for 1D-6D, https://github.com/jacobwilliams/bspline-fortran)
   PUBLIC::lagrange_interp_nd_value,lagrange_interp_nd_value2
 CONTAINS
   ! interpolation with polynominals
